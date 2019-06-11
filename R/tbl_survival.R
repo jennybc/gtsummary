@@ -14,8 +14,8 @@ tbl_survival <- function(x, ...) {
 #' formatted summary of the results
 #'
 #' @param x a survfit object with a no stratification
-#' (e.g. `survfit(Surv(ttdeath, death) ~ 1, trial)`), or a single stratifying
-#' variable (e.g. `survfit(Surv(ttdeath, death) ~ trt, trial)`)
+#' (e.g. `survfit(Surv(ttdeath, death) ~ 1, gastric)`), or a single stratifying
+#' variable (e.g. `survfit(Surv(ttdeath, death) ~ trt, gastric)`)
 #' @param times numeric vector of times for which to return survival probabilities.
 #' @param probs numeric vector of probabilities with values in (0,1)
 #' specifying the survival quantiles to return
@@ -50,14 +50,14 @@ tbl_survival <- function(x, ...) {
 #' @export
 #' @examples
 #' library(survival)
-#' fit1 <- survfit(Surv(ttdeath, death) ~ trt, trial)
+#' fit1 <- survfit(Surv(ttdeath, death) ~ trt, gastric)
 #' tbl_strata_ex1 <-
 #'   tbl_survival(fit1,
 #'     times = c(12, 24),
 #'     label = "{time} Months"
 #'   )
 #'
-#' fit2 <- survfit(Surv(ttdeath, death) ~ 1, trial)
+#' fit2 <- survfit(Surv(ttdeath, death) ~ 1, gastric)
 #' tbl_nostrata_ex2 <-
 #'   tbl_survival(fit2,
 #'     probs = c(0.1, 0.2),
@@ -66,9 +66,9 @@ tbl_survival <- function(x, ...) {
 #' @section level_label argument:
 #' The `level_label` is used to modify the stratum labels. The default is
 #' \code{level_label = "{level}, N = {n}"}. The quantities in the curly
-#' brackets evaluate to stratum-specific values.  For example, in the trial
-#' data set, there is a column called `trt` with levels 'Drug' and 'Placebo'.
-#' In this example, `{level}` would evaluate to either 'Drug' or 'Placebo'
+#' brackets evaluate to stratum-specific values.  For example, in the gastric
+#' data set, there is a column called `trt` with levels 'Radiation' and 'No Radiation'.
+#' In this example, `{level}` would evaluate to either 'Radiation' or 'No Radiation'
 #' depending on the stratum.  Other quantities available to print are:
 #' \itemize{
 #'   \item `{level}` level of the stratification variable

@@ -38,41 +38,41 @@ Here's how this translates into the use of `tbl_summary()`.
     
 ## Basic Usage
 
-We'll be using the `trial` data set throughout this example.  This set contains data from `r nrow(trial)` patients randomized to a new drug therapy or placebo.  The outcome is a binary tumor response.  Each variable in the data frame has been assigned an attribute label (e.g. `attr(trial$trt, "label") = "Treatment Randomization")`. These labels are displayed in the output table by default.  A data frame without labels will print variable names.
+We'll be using the `gastric` data set throughout this example.  This set contains data from `r nrow(gastric)` gastric cancer patients who received chemotherapy only or chemotherapy and radiation.  The outcome is a binary tumor response.  Each variable in the data frame has been assigned an attribute label (e.g. `attr(gastric$trt, "label") = "Treatment Recieved")`. These labels are displayed in the output table by default.  A data frame without labels will print variable names.
 
-    trt      Treatment Randomization
+    trt      Treatment Recieved
     age      Age, yrs
-    marker   Marker Level, ng/mL
+    albumin  Albumin Level
     stage    T Stage
     grade    Grade
     response Tumor Response
     death    Patient Died
-    ttdeath  Years from Randomization to Death/Censor
+    ttdeath  Years from Treatment to Death/Censor
 
 ```{r, message=FALSE}
 library(dplyr)
 library(gtsummary)
 
-# printing trial data
-head(trial) %>% gt()
+# printing gastric data
+head(gastric) %>% gt()
 ```
 
-The default output from `tbl_summary()` is meant to be publication ready.  Let's start by creating a table of summary statistics from the `trial` data set.  The `tbl_summary()` can take, minimally, a data set as the only input, and return descriptive statistics for each column in the data frame.
+The default output from `tbl_summary()` is meant to be publication ready.  Let's start by creating a table of summary statistics from the `gastric` data set.  The `tbl_summary()` can take, minimally, a data set as the only input, and return descriptive statistics for each column in the data frame.
 
-For brevity, keeping a subset of the variables in the trial data set.
+For brevity, keeping a subset of the variables in the gastric data set.
 
 ```{r, message=FALSE}
-trial2 =
-  trial %>%
-  select(trt, marker, stage)
+gastric2 =
+  gastric %>%
+  select(trt, albumin, stage)
 
-tbl_summary(trial2)
+tbl_summary(gastric2)
 ```
 
-This is a great table, but for trial data the summary statistics should be split by randomization group.  While reporting p-values for baseline characteristics in a randomized trial isn't recommended, we'll do it here as an illustration of the feature.  To compare two or more groups, include `add_p()` with the function call.
+This is a great table, but for the data the summary statistics should be split by treatment group.  To compare two or more groups, include `add_p()` with the function call.
 
 ```{r}
-tbl_summary(trial2, by = "trt") %>% add_p()
+tbl_summary(gastric2, by = "trt") %>% add_p()
 ```
 
 ## Customize Output
@@ -124,7 +124,7 @@ The {gt} package is packed with many great functions for modifying table output-
 To use the {gt} package functions with {gtsummary} tables, the summary table must first be converted into a `gt` object.  To this end, use the `as_gt()` function after modifications have been completed with {gtsummary} functions.
 
 ```
-trial %>%
+gastric %>%
   tbl_summary(by = "trt", missing = "no") %>%
   add_n() %>%
   as_gt() %>%
@@ -133,10 +133,10 @@ trial %>%
 
 ### Example
 
-The code below calculates the standard table with summary statistics split by treatment randomization with the following modifications
+The code below calculates the standard table with summary statistics split by treatment with the following modifications
 
 - Report 'mean (SD)' and 'n / N (\%)'  
-- Round the marker mean and SD to 1 and 2 places, respectively
+- Round the albumin mean and SD to 1 and 2 places, respectively
 - Modify variable labels in the table 
 - Use t-test instead of Wilcoxon rank-sum 
 - Round large p-values to two decimal place  
@@ -146,18 +146,18 @@ The code below calculates the standard table with summary statistics split by tr
 - Italicize variable levels  
 
 ```{r}
-trial2 %>%
+gastric2 %>%
   # build base summary table
   tbl_summary(by = "trt",
               # change variable labels
-              label = list(marker = "Marker, ng/mL",
+              label = list(albumin = "Albumin, g/dL",
                            stage = "Clinical T Stage"),
               # change statistics printed in table
               statistic = list(..continuous.. = "{mean} ({sd})",
                                ..categorical.. = "{n} / {N} ({p}%)"),
-              digits = list(marker = c(1, 2))) %>%
+              digits = list(albumin = c(1, 2))) %>%
   # add p-values, report t-test, round large pvalues to two decimal place
-  add_p(test = list(marker = "t.test"),
+  add_p(test = list(albumin = "t.test"),
                  pvalue_fun = function(x) style_pvalue(x, digits = 2)) %>%
   # add statistic labels
   add_stat_label() %>%
@@ -179,24 +179,24 @@ Reproducible reports are an import part of good practices.  We often need to rep
 First create a basic summary table.
 
 ```{r}
-tab1 = tbl_summary(trial2, by = "trt")
+tab1 = tbl_summary(gastric2, by = "trt")
 tab1
 ```
 
-To report the median (IQR) of the marker levels in each group, use the following commands inline.
+To report the median (IQR) of the albumin levels in each group, use the following commands inline.
 
-> The median (IQR) marker level in the drug and placebo groups are `` `r
-inline_text(tab1, variable = "marker", column = "Drug")` `` and `` `r
-inline_text(tab1, variable = "marker", column = "Placebo")` ``, respectively.
+> The median (IQR) albumin level in the radiation and no radiation groups are `` `r
+inline_text(tab1, variable = "albumin", column = "Radiation")` `` and `` `r
+inline_text(tab1, variable = "albumin", column = "No Radiation")` ``, respectively.
 
 Here's how the line will appear in your report.
 
-> The median (IQR) marker level in the drug and placebo groups are `r inline_text(tab1, variable = "marker", column = "Drug")` and `r inline_text(tab1, variable = "marker", column = "Placebo")`, respectively.
+> The median (IQR) albumin level in the radiation and no radiation groups are `r inline_text(tab1, variable = "albumin", column = "Radiation")` and `r inline_text(tab1, variable = "albumin", column = "No Radiation")`, respectively.
 
 If you display a statistic from a categorical variable, include the `level` argument.  
 
 > `` `r
-inline_text(tab1, variable = "stage", level = "T1", column = "Drug")` `` resolves to "`r inline_text(tab1, variable = "stage", level = "T1", column = "Drug")`"
+inline_text(tab1, variable = "stage", level = "T1", column = "Radiation")` `` resolves to "`r inline_text(tab1, variable = "stage", level = "T1", column = "Radiation")`"
 
 For more detail about inline code, review to the  [Rstudio documentation page](https://rmarkdown.rstudio.com/lesson-4.html).
 
@@ -205,7 +205,7 @@ For more detail about inline code, review to the  [Rstudio documentation page](h
 When you print output from the `tbl_summary()` function into the R console or into an R markdown, there are default printing functions that are called in the background: `print.tbl_summary()` and `knit_print.tbl_summary()`.  The true output from `tbl_summary()` is a named list, but when you print the object, a formatted version of `.$table_body` is displayed.  All formatting and modifications are made using the {gt} package.
 
 ```{r}
-tbl_summary(trial2) %>% names()
+tbl_summary(gastric2) %>% names()
 ```
 
 These are the additional data stored in the `tbl_summary()` output list. 
@@ -220,18 +220,18 @@ These are the additional data stored in the `tbl_summary()` output list.
 `gt_calls` is a named list of saved {gt} function calls.  The {gt} calls are run when the object is printed to the console or in an R markdown document. Here's an example of the first few calls saved with `tbl_summary()`:
 
 ```{r}
-tbl_summary(trial2) %>% purrr::pluck("gt_calls") %>% head(n = 3)
+tbl_summary(gastric2) %>% purrr::pluck("gt_calls") %>% head(n = 3)
 ```
 
 The {gt} functions are called in the order they appear, always beginning with the `gt()` function.
 
-If the user does not want a specific {gt} function to run (i.e. would like to change default printing), any {gt} call can be omitted in the `as_gt()` function by specifying the `omit` argument.  For example, the `tbl_summary()` call creates many named {gt} function calls: *`r tbl_summary(trial2) %>% purrr::pluck("gt_calls") %>% names() %>% paste(collapse = ", ")`*.  Any of these can be omitted.  In the example below, the default footnote will be omitted from the output.
+If the user does not want a specific {gt} function to run (i.e. would like to change default printing), any {gt} call can be omitted in the `as_gt()` function by specifying the `omit` argument.  For example, the `tbl_summary()` call creates many named {gt} function calls: *`r tbl_summary(gastric2) %>% purrr::pluck("gt_calls") %>% names() %>% paste(collapse = ", ")`*.  Any of these can be omitted.  In the example below, the default footnote will be omitted from the output.
 
 After the `as_gt()` function is run, additional formatting may be added to the table using {gt} formatting functions. In the example below, a spanning header for the `by = ` variable is included with the {gt} function `tab_spanner()`.
 
 ```{r remedy001}
-tbl_summary(trial2, by = "trt") %>%
+tbl_summary(gastric2, by = "trt") %>%
   as_gt(omit = "footnote_stat_label") %>%
-  tab_spanner(label = "Randomization Group",
+  tab_spanner(label = "Treatment Group",
               columns = starts_with("stat_"))
 ```

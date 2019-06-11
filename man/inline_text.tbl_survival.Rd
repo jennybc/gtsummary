@@ -55,11 +55,11 @@ print the table the estimates are extracted from.
 \examples{
 library(survival)
 surv_table <-
-  survfit(Surv(ttdeath, death) ~ trt, trial) \%>\%
+  survfit(Surv(ttdeath, death) ~ trt, gastric) \%>\%
   tbl_survival(times = c(12, 24))
 
 inline_text(surv_table,
-  strata = "Drug",
+  strata = "Radiation",
   time = 12
 )
 }

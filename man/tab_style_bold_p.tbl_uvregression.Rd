@@ -26,8 +26,8 @@ Bold p-values below a chosen threshold (e.g. <.05) in tables created by \code{\l
 
 \examples{
 tbl_uvglm_bold_p_ex <-
-  trial \%>\%
-  dplyr::select(age, marker, response, grade) \%>\%
+  gastric \%>\%
+  dplyr::select(age, albumin, response, grade) \%>\%
   tbl_uvregression(
     method = glm,
     y = response,

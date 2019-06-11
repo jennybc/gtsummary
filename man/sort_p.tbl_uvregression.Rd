@@ -23,8 +23,8 @@ Sort variables in tables created by \code{\link{tbl_uvregression}} by ascending 
 
 \examples{
 tbl_uvglm_sort_p_ex <-
-  trial \%>\%
-  dplyr::select(age, marker, response, grade) \%>\%
+  gastric \%>\%
+  dplyr::select(age, albumin, response, grade) \%>\%
   tbl_uvregression(
     method = glm,
     y = response,

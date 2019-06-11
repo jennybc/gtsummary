@@ -38,7 +38,7 @@ If a needed class of model is not supported by
 
 \examples{
 tbl_lm_global_ex1 <-
-  lm(marker ~ age + grade, trial) \%>\%
+  lm(albumin ~ age + grade, gastric) \%>\%
   tbl_regression() \%>\%
   add_global_p()
 }

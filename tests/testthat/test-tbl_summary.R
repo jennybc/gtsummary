@@ -60,39 +60,39 @@ test_that("tbl_summary returns errors with bad inputs", {
     "*"
   )
   expect_error(
-    tbl_summary(trial, by = "THIS_IS_NOT_A_VARIABLE"),
+    tbl_summary(gastric, by = "THIS_IS_NOT_A_VARIABLE"),
     "*"
   )
   expect_error(
-    tbl_summary(trial, by = "response"),
+    tbl_summary(gastric, by = "response"),
     "*"
   )
   expect_error(
-    tbl_summary(trial, type = "response"),
+    tbl_summary(gastric, type = "response"),
     "*"
   )
   expect_error(
-    tbl_summary(trial, value = "0"),
+    tbl_summary(gastric, value = "0"),
     "*"
   )
   expect_error(
-    tbl_summary(trial, label = "Age"),
+    tbl_summary(gastric, label = "Age"),
     "*"
   )
   expect_error(
-    tbl_summary(trial, statistic = "{mean}"),
+    tbl_summary(gastric, statistic = "{mean}"),
     "*"
   )
   expect_error(
-    tbl_summary(trial, digits = 0),
+    tbl_summary(gastric, digits = 0),
     "*"
   )
   expect_error(
-    tbl_summary(trial, digits = list(age = -5)),
+    tbl_summary(gastric, digits = list(age = -5)),
     "*"
   )
   expect_error(
-    tbl_summary(trial, sort = list(grade = "frequ55555ency")),
+    tbl_summary(gastric, sort = list(grade = "frequ55555ency")),
     "*"
   )
 })

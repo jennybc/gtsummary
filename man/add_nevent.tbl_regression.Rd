@@ -33,7 +33,7 @@ of events is accessible via the \link{inline_text} function for printing in a re
 
 \examples{
 tbl_reg_nevent_ex <-
-  glm(response ~ trt, trial, family = binomial) \%>\%
+  glm(response ~ trt, gastric, family = binomial) \%>\%
   tbl_regression() \%>\%
   add_nevent()
 }

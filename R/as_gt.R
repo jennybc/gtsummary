@@ -17,7 +17,7 @@
 #' @author Daniel D. Sjoberg
 #' @examples
 #' as_gt_ex <-
-#'   trial %>%
+#'   gastric %>%
 #'   tbl_summary(by = "trt") %>%
 #'   as_gt()
 #' @section Example Output:

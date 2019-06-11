@@ -30,7 +30,7 @@ If a needed class of model is not supported by
 
 \examples{
 tbl_uv_global_ex2 <-
-  trial \%>\%
+  gastric \%>\%
   dplyr::select(response, trt, age, grade) \%>\%
   tbl_uvregression(
     method = glm,

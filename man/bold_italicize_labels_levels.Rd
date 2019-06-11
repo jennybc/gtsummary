@@ -40,7 +40,7 @@ Bold or Italicize labels or levels in gtsummary tables
 
 \examples{
 tbl_bold_ital_ex <-
-  trial \%>\%
+  gastric \%>\%
   dplyr::select(trt, age, grade) \%>\%
   tbl_summary() \%>\%
   tab_style_bold_labels() \%>\%

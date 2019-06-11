@@ -44,7 +44,7 @@ Adds p-values to tables created by \code{tbl_summary} by comparing values across
 
 \examples{
 add_comp_ex1 <-
-  trial \%>\%
+  gastric \%>\%
   dplyr::select(age, grade, response, trt) \%>\%
   tbl_summary(by = "trt") \%>\%
   add_p()

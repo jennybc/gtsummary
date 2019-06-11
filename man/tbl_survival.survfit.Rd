@@ -12,8 +12,8 @@
 }
 \arguments{
 \item{x}{a survfit object with a no stratification
-(e.g. \code{survfit(Surv(ttdeath, death) ~ 1, trial)}), or a single stratifying
-variable (e.g. \code{survfit(Surv(ttdeath, death) ~ trt, trial)})}
+(e.g. \code{survfit(Surv(ttdeath, death) ~ 1, gastric)}), or a single stratifying
+variable (e.g. \code{survfit(Surv(ttdeath, death) ~ trt, gastric)})}
 
 \item{times}{numeric vector of times for which to return survival probabilities.}
 
@@ -60,9 +60,9 @@ formatted summary of the results
 
 The \code{level_label} is used to modify the stratum labels. The default is
 \code{level_label = "{level}, N = {n}"}. The quantities in the curly
-brackets evaluate to stratum-specific values.  For example, in the trial
-data set, there is a column called \code{trt} with levels 'Drug' and 'Placebo'.
-In this example, \code{{level}} would evaluate to either 'Drug' or 'Placebo'
+brackets evaluate to stratum-specific values.  For example, in the gastric
+data set, there is a column called \code{trt} with levels 'Radiation' and 'No Radiation'.
+In this example, \code{{level}} would evaluate to either 'Radiation' or 'No Radiation'
 depending on the stratum.  Other quantities available to print are:
 \itemize{
 \item \code{{level}} level of the stratification variable
@@ -87,14 +87,14 @@ depending on the stratum.  Other quantities available to print are:
 
 \examples{
 library(survival)
-fit1 <- survfit(Surv(ttdeath, death) ~ trt, trial)
+fit1 <- survfit(Surv(ttdeath, death) ~ trt, gastric)
 tbl_strata_ex1 <-
   tbl_survival(fit1,
     times = c(12, 24),
     label = "{time} Months"
   )
 
-fit2 <- survfit(Surv(ttdeath, death) ~ 1, trial)
+fit2 <- survfit(Surv(ttdeath, death) ~ 1, gastric)
 tbl_nostrata_ex2 <-
   tbl_survival(fit2,
     probs = c(0.1, 0.2),

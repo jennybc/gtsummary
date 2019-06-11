@@ -25,7 +25,7 @@ tab_style_bold_p <- function(x, ...) UseMethod("tab_style_bold_p")
 #' @author Daniel D. Sjoberg
 #' @examples
 #' tbl_sum_bold_p_ex <-
-#'   trial %>%
+#'   gastric %>%
 #'   dplyr::select(age, grade, response, trt) %>%
 #'   tbl_summary(by = "trt") %>%
 #'   add_p() %>%
@@ -74,7 +74,7 @@ tab_style_bold_p.tbl_summary <- function(x, t = 0.05, q = FALSE, ...) {
 #' @family tbl_regression tools
 #' @examples
 #' tbl_lm_bold_p_ex <-
-#'   glm(response ~ trt + grade, trial, family = binomial(link = "logit")) %>%
+#'   glm(response ~ trt + grade, gastric, family = binomial(link = "logit")) %>%
 #'   tbl_regression(exponentiate = TRUE) %>%
 #'   tab_style_bold_p()
 #' @section Example Output:
@@ -110,8 +110,8 @@ tab_style_bold_p.tbl_regression <- function(x, t = 0.05, ...) {
 #' @export
 #' @examples
 #' tbl_uvglm_bold_p_ex <-
-#'   trial %>%
-#'   dplyr::select(age, marker, response, grade) %>%
+#'   gastric %>%
+#'   dplyr::select(age, albumin, response, grade) %>%
 #'   tbl_uvregression(
 #'     method = glm,
 #'     y = response,

@@ -21,7 +21,7 @@ Sort variables in tables created by \code{\link{tbl_regression}} by ascending p-
 
 \examples{
 tbl_lm_sort_p_ex <-
-  glm(response ~ trt + grade, trial, family = binomial(link = "logit")) \%>\%
+  glm(response ~ trt + grade, gastric, family = binomial(link = "logit")) \%>\%
   tbl_regression(exponentiate = TRUE) \%>\%
   sort_p()
 }

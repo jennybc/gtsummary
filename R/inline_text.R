@@ -29,11 +29,11 @@ inline_text <- function(x, ...) {
 #' @author Daniel D. Sjoberg
 #' @export
 #' @examples
-#' t1 <- tbl_summary(trial)
-#' t2 <- tbl_summary(trial, by = "trt") %>% add_p()
+#' t1 <- tbl_summary(gastric)
+#' t2 <- tbl_summary(gastric, by = "trt") %>% add_p()
 #'
 #' inline_text(t1, variable = "age")
-#' inline_text(t2, variable = "grade", level = "I", column = "Drug")
+#' inline_text(t2, variable = "grade", level = "I", column = "Radiation")
 #' inline_text(t2, variable = "grade", column = "p.value")
 inline_text.tbl_summary <-
   function(x, variable, level = NULL,
@@ -151,7 +151,7 @@ inline_text.tbl_summary <-
 #' @export
 #' @examples
 #' inline_text_ex1 <-
-#'   glm(response ~ age + grade, trial, family = binomial(link = "logit")) %>%
+#'   glm(response ~ age + grade, gastric, family = binomial(link = "logit")) %>%
 #'   tbl_regression(exponentiate = TRUE)
 #'
 #' inline_text(inline_text_ex1, variable = "age")
@@ -233,7 +233,7 @@ inline_text.tbl_regression <-
 #' @export
 #' @examples
 #' inline_text_ex1 <-
-#'   trial %>%
+#'   gastric %>%
 #'   dplyr::select(response, age, grade) %>%
 #'   tbl_uvregression(
 #'     method = glm,
@@ -290,11 +290,11 @@ inline_text.tbl_uvregression <- inline_text.tbl_regression
 #' @examples
 #' library(survival)
 #' surv_table <-
-#'   survfit(Surv(ttdeath, death) ~ trt, trial) %>%
+#'   survfit(Surv(ttdeath, death) ~ trt, gastric) %>%
 #'   tbl_survival(times = c(12, 24))
 #'
 #' inline_text(surv_table,
-#'   strata = "Drug",
+#'   strata = "Radiation",
 #'   time = 12
 #' )
 inline_text.tbl_survival <-

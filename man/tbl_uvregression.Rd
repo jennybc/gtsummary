@@ -89,7 +89,7 @@ This list is not exhaustive, and care should be taken for each number reported.
 \examples{
 tbl_uv_ex1 <-
   tbl_uvregression(
-    trial \%>\% dplyr::select(response, age, grade),
+    gastric \%>\% dplyr::select(response, age, grade),
     method = glm,
     y = response,
     method.args = list(family = binomial),
@@ -100,7 +100,7 @@ tbl_uv_ex1 <-
 library(survival)
 tbl_uv_ex2 <-
   tbl_uvregression(
-    trial \%>\% dplyr::select(ttdeath, death, age, grade, response),
+    gastric \%>\% dplyr::select(ttdeath, death, age, grade, response),
     method = coxph,
     y = Surv(ttdeath, death),
     label = list(grade = "Grade"),

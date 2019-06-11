@@ -131,12 +131,12 @@ the \code{value} argument, e.g. \code{value = list(varname = "level to show")}
 
 \examples{
 tbl_summary_ex1 <-
-  trial \%>\%
+  gastric \%>\%
   dplyr::select(age, grade, response) \%>\%
   tbl_summary()
 
 tbl_summary_ex2 <-
-  trial \%>\%
+  gastric \%>\%
   dplyr::select(age, grade, response, trt) \%>\%
   tbl_summary(
     by = "trt",

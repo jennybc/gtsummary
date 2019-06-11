@@ -36,7 +36,7 @@
 #' @examples
 #' tbl_uv_ex1 <-
 #'   tbl_uvregression(
-#'     trial %>% dplyr::select(response, age, grade),
+#'     gastric %>% dplyr::select(response, age, grade),
 #'     method = glm,
 #'     y = response,
 #'     method.args = list(family = binomial),
@@ -47,7 +47,7 @@
 #' library(survival)
 #' tbl_uv_ex2 <-
 #'   tbl_uvregression(
-#'     trial %>% dplyr::select(ttdeath, death, age, grade, response),
+#'     gastric %>% dplyr::select(ttdeath, death, age, grade, response),
 #'     method = coxph,
 #'     y = Surv(ttdeath, death),
 #'     label = list(grade = "Grade"),

@@ -26,7 +26,7 @@ add_q <- function(x, ...) UseMethod("add_q")
 #' @export
 #' @examples
 #' tbl_sum_q_ex <-
-#'   trial %>%
+#'   gastric %>%
 #'   dplyr::select(trt, age, grade, response) %>%
 #'   tbl_summary(by = "trt") %>%
 #'   add_p() %>%
@@ -117,8 +117,8 @@ add_q.tbl_summary <- function(x, method = "fdr", pvalue_fun = x$pvalue_fun, ...)
 #' @export
 #' @examples
 #' tbl_uvr_q_ex <-
-#'   trial %>%
-#'   dplyr::select(age, marker, grade, response) %>%
+#'   gastric %>%
+#'   dplyr::select(age, albumin, grade, response) %>%
 #'   tbl_uvregression(
 #'     method = lm,
 #'     y = age

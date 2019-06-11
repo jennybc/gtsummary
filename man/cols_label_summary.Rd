@@ -39,12 +39,12 @@ e.g. the N and percent within each group
 
 \examples{
 tbl_col_ex1 <-
-  trial \%>\%
+  gastric \%>\%
   dplyr::select(age, grade, response) \%>\%
   tbl_summary() \%>\%
   cols_label_summary(stat_overall = md("**All Patients**, N = {N}"))
 tbl_col_ex2 <-
-  trial \%>\%
+  gastric \%>\%
   dplyr::select(age, grade, response, trt) \%>\%
   tbl_summary(by = "trt") \%>\%
   cols_label_summary(

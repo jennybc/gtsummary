@@ -3,7 +3,7 @@ context("test-tbl_merge")
 library(survival)
 # univariate regression models
 t0 <-
-  trial %>%
+  gastric %>%
   dplyr::select(response, trt, grade, age) %>%
   tbl_uvregression(
     method = glm,
@@ -14,14 +14,14 @@ t0 <-
   )
 # MVA logistic regression
 t1 <-
-  glm(response ~ trt + grade + age, trial, family = binomial) %>%
+  glm(response ~ trt + grade + age, gastric, family = binomial) %>%
   tbl_regression(
     label = list(trt = "Treatment", grade = "Grade", age = "Age"),
     exponentiate = TRUE
   )
 # MVA cox regression
 t2 <-
-  coxph(Surv(ttdeath, death) ~ trt + grade + age, trial) %>%
+  coxph(Surv(ttdeath, death) ~ trt + grade + age, gastric) %>%
   tbl_regression(
     label = list(trt = "Treatment", grade = "Grade", age = "Age"),
     exponentiate = TRUE

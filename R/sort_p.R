@@ -24,7 +24,7 @@ sort_p <- function(x, ...) UseMethod("sort_p")
 #' @author Karissa Whiting
 #' @examples
 #' tbl_sum_sort_p_ex <-
-#'   trial %>%
+#'   gastric %>%
 #'   dplyr::select(age, grade, response, trt) %>%
 #'   tbl_summary(by = "trt") %>%
 #'   add_p() %>%
@@ -76,7 +76,7 @@ sort_p.tbl_summary <- function(x, q = FALSE, ...) {
 #' @author Karissa Whiting
 #' @examples
 #' tbl_lm_sort_p_ex <-
-#'   glm(response ~ trt + grade, trial, family = binomial(link = "logit")) %>%
+#'   glm(response ~ trt + grade, gastric, family = binomial(link = "logit")) %>%
 #'   tbl_regression(exponentiate = TRUE) %>%
 #'   sort_p()
 #' @section Example Output:
@@ -116,8 +116,8 @@ sort_p.tbl_regression <- function(x, ...) {
 #' @author Karissa Whiting
 #' @examples
 #' tbl_uvglm_sort_p_ex <-
-#'   trial %>%
-#'   dplyr::select(age, marker, response, grade) %>%
+#'   gastric %>%
+#'   dplyr::select(age, albumin, response, grade) %>%
 #'   tbl_uvregression(
 #'     method = glm,
 #'     y = response,

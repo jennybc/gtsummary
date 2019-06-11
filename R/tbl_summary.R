@@ -96,12 +96,12 @@
 #' @author Daniel D. Sjoberg
 #' @examples
 #' tbl_summary_ex1 <-
-#'   trial %>%
+#'   gastric %>%
 #'   dplyr::select(age, grade, response) %>%
 #'   tbl_summary()
 #'
 #' tbl_summary_ex2 <-
-#'   trial %>%
+#'   gastric %>%
 #'   dplyr::select(age, grade, response, trt) %>%
 #'   tbl_summary(
 #'     by = "trt",

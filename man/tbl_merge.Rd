@@ -22,13 +22,13 @@ Merges two or more \code{tbl_regression} or \code{tbl_uvregression} objects and 
 \examples{
 library(survival)
 t1 <-
-  glm(response ~ trt + grade + age, trial, family = binomial) \%>\%
+  glm(response ~ trt + grade + age, gastric, family = binomial) \%>\%
   tbl_regression(
     label = list(trt = "Treatment", grade = "Grade", age = "Age"),
     exponentiate = TRUE
   )
 t2 <-
-  coxph(Surv(ttdeath, death) ~ trt + grade + age, trial) \%>\%
+  coxph(Surv(ttdeath, death) ~ trt + grade + age, gastric) \%>\%
   tbl_regression(
     label = list(trt = "Treatment", grade = "Grade", age = "Age"),
     exponentiate = TRUE

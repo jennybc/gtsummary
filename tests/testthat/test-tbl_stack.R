@@ -1,23 +1,23 @@
 context("test-tbl_stack")
 library(survival)
 t1 <-
-  glm(response ~ trt, trial, family = binomial) %>%
+  glm(response ~ trt, gastric, family = binomial) %>%
   tbl_regression(exponentiate = TRUE,
                  label = list(trt = "Treatment (unadjusted)"))
 
 t2 <-
-  glm(response ~ trt + grade + stage + marker, trial, family = binomial) %>%
+  glm(response ~ trt + grade + stage + albumin, gastric, family = binomial) %>%
   tbl_regression(include = "trt",
                  exponentiate = TRUE,
                  label = list(trt = "Treatment (adjusted)"))
 
 t3 <-
-  coxph(Surv(ttdeath, death) ~ trt, trial) %>%
+  coxph(Surv(ttdeath, death) ~ trt, gastric) %>%
   tbl_regression(exponentiate = TRUE,
                  label = list(trt = "Treatment (unadjusted)"))
 
 t4 <-
-  coxph(Surv(ttdeath, death) ~ trt + grade + stage + marker, trial) %>%
+  coxph(Surv(ttdeath, death) ~ trt + grade + stage + albumin, gastric) %>%
   tbl_regression(include = "trt",
                  exponentiate = TRUE,
                  label = list(trt = "Treatment (adjusted)"))

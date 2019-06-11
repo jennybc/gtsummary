@@ -54,7 +54,7 @@ print the table the estimates are extracted from.
 
 \examples{
 inline_text_ex1 <-
-  glm(response ~ age + grade, trial, family = binomial(link = "logit")) \%>\%
+  glm(response ~ age + grade, gastric, family = binomial(link = "logit")) \%>\%
   tbl_regression(exponentiate = TRUE)
 
 inline_text(inline_text_ex1, variable = "age")

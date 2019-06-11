@@ -1,7 +1,8 @@
 context("test-tbl_survival")
+library(survival)
 
 test_that("no errors/warnings with stratified variable", {
-  s1 <- survfit(Surv(ttdeath, death) ~ trt, trial)
+  s1 <- survfit(Surv(ttdeath, death) ~ trt, gastric)
   expect_error(
     tbl_survival(
       s1,
@@ -35,7 +36,7 @@ test_that("no errors/warnings with stratified variable", {
 })
 
 test_that("no errors/warnings with no stratified variable", {
-  s2 <- survfit(Surv(ttdeath, death) ~ 1, trial)
+  s2 <- survfit(Surv(ttdeath, death) ~ 1, gastric)
   expect_error(
     tbl_survival(
       s2,

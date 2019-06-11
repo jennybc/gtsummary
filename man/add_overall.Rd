@@ -23,7 +23,7 @@ created by \code{tbl_summary}.
 
 \examples{
 tbl_overall_ex <-
-  trial \%>\%
+  gastric \%>\%
   dplyr::select(age, response, grade, trt) \%>\%
   tbl_summary(by = "trt") \%>\%
   add_overall()

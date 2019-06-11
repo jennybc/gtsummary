@@ -33,7 +33,7 @@ accessible via the \link{inline_text} function for printing in a report.
 
 \examples{
 tbl_uv_nevent_ex <-
-  trial \%>\%
+  gastric \%>\%
   dplyr::select(response, trt, age, grade) \%>\%
   tbl_uvregression(
     method = glm,

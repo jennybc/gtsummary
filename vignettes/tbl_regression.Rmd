@@ -32,20 +32,20 @@ To start, a quick note on the magrittr package's pipe function, `%>%`.  By defau
 
 ## Basic Usage
 
-We will use the `trial` data set throughout this example.  This set contains data from `r nrow(trial)` patients randomized to a new drug or placebo.  The outcome is a binary tumor response.  Each variable in the data frame has been assigned an attribute label (i.e. `attr(trial$trt, "label") == "Treatment Randomization")`
+We'll be using the `gastric` data set throughout this example.  This set contains data from `r nrow(gastric)` gastric cancer patients who received chemotherapy only or chemotherapy and radiation.  The outcome is a binary tumor response.  Each variable in the data frame has been assigned an attribute label (e.g. `attr(gastric$trt, "label") = "Treatment Recieved")`.
 
-    trt      Treatment Randomization
+    trt      Treatment Recieved
     age      Age, yrs
-    marker   Marker Level, ng/mL
+    albumin  Albumin Level
     stage    T Stage
     grade    Grade
     response Tumor Response
 
-The default output from `tbl_regression()` is meant to be publication ready.  Let's start by creating a regression model table from the `trial` data set included in the {gtsummary} package.  We will predict tumor response using age, stage, and grade using a logistic regression model.  
+The default output from `tbl_regression()` is meant to be publication ready.  Let's start by creating a regression model table from the `gastric` data set included in the {gtsummary} package.  We will predict tumor response using age, stage, and grade using a logistic regression model.  
 
 ```{r, message=FALSE}
 # build logistic regression model
-m1 = glm(response ~ age + stage + grade, trial, family = binomial(link = "logit"))
+m1 = glm(response ~ age + stage + grade, gastric, family = binomial(link = "logit"))
 
 # format results into data frame
 tbl_regression(m1, exponentiate = TRUE)
@@ -202,7 +202,7 @@ tbl_regression(m1) %>%
 The `tbl_uvregression()` produces a table of univariate regression results.  The function is a wrapper for `tbl_regression()`, and as a result, accepts nearly identical function arguments.  The function's results can be modified in similar ways to `tbl_regression()` and the results reported inline similarly to `tbl_regression()`.
 
 ```{r tbl_uvregression}
-trial %>%
+gastric %>%
   select(-death, -ttdeath, -stage) %>%
   tbl_uvregression(method = glm,
                    y = response,

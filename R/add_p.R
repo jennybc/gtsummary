@@ -22,7 +22,7 @@
 #' @author Emily C. Zabor, Daniel D. Sjoberg
 #' @examples
 #' add_comp_ex1 <-
-#'   trial %>%
+#'   gastric %>%
 #'   dplyr::select(age, grade, response, trt) %>%
 #'   tbl_summary(by = "trt") %>%
 #'   add_p()

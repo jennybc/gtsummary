@@ -54,7 +54,7 @@ print the table the estimates are extracted from.
 
 \examples{
 inline_text_ex1 <-
-  trial \%>\%
+  gastric \%>\%
   dplyr::select(response, age, grade) \%>\%
   tbl_uvregression(
     method = glm,

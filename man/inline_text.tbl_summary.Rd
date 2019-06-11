@@ -34,11 +34,11 @@ inline reporting in an R markdown document. Detailed examples in the
 \href{http://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html#inline_text}{tbl_summary vignette}
 }
 \examples{
-t1 <- tbl_summary(trial)
-t2 <- tbl_summary(trial, by = "trt") \%>\% add_p()
+t1 <- tbl_summary(gastric)
+t2 <- tbl_summary(gastric, by = "trt") \%>\% add_p()
 
 inline_text(t1, variable = "age")
-inline_text(t2, variable = "grade", level = "I", column = "Drug")
+inline_text(t2, variable = "grade", level = "I", column = "Radiation")
 inline_text(t2, variable = "grade", column = "p.value")
 }
 \seealso{

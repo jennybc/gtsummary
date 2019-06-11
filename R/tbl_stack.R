@@ -13,12 +13,12 @@
 #' @examples
 #' # Example 1 - stacking two tbl_regression objects
 #' t1 <-
-#'   glm(response ~ trt, trial, family = binomial) %>%
+#'   glm(response ~ trt, gastric, family = binomial) %>%
 #'   tbl_regression(exponentiate = TRUE,
 #'                  label = list(trt = "Treatment (unadjusted)"))
 #'
 #' t2 <-
-#'   glm(response ~ trt + grade + stage + marker, trial, family = binomial) %>%
+#'   glm(response ~ trt + grade + stage + albumin, gastric, family = binomial) %>%
 #'   tbl_regression(include = "trt",
 #'                  exponentiate = TRUE,
 #'                  label = list(trt = "Treatment (adjusted)"))
@@ -28,12 +28,12 @@
 #' # Example 2 - stacking two tbl_merge objects
 #' library(survival)
 #' t3 <-
-#'   coxph(Surv(ttdeath, death) ~ trt, trial) %>%
+#'   coxph(Surv(ttdeath, death) ~ trt, gastric) %>%
 #'   tbl_regression(exponentiate = TRUE,
 #'                  label = list(trt = "Treatment (unadjusted)"))
 #'
 #' t4 <-
-#'   coxph(Surv(ttdeath, death) ~ trt + grade + stage + marker, trial) %>%
+#'   coxph(Surv(ttdeath, death) ~ trt + grade + stage + albumin, gastric) %>%
 #'   tbl_regression(include = "trt",
 #'                  exponentiate = TRUE,
 #'                  label = list(trt = "Treatment (adjusted)"))
@@ -45,7 +45,7 @@
 #' tbl_stack_ex2 <-
 #'   tbl_stack(list(row1, row2)) %>%
 #'   as_gt() %>%
-#'   tab_footnote(footnote = "Adjusted for cancer grade, state, and marker level.",
+#'   tab_footnote(footnote = "Adjusted for cancer grade, state, and albumin level.",
 #'                locations = cells_data(columns = "label", rows = 4))
 #' @section Example Output:
 #' \if{html}{Example 1}

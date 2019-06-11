@@ -9,7 +9,7 @@
 #' @export
 #' @examples
 #' tbl_stat_ex <-
-#'   trial %>%
+#'   gastric %>%
 #'   dplyr::select(trt, age, grade, response) %>%
 #'   tbl_summary() %>%
 #'   add_stat_label()

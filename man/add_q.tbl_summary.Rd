@@ -35,7 +35,7 @@ The adjustments to the p-values is performed with
 
 \examples{
 tbl_sum_q_ex <-
-  trial \%>\%
+  gastric \%>\%
   dplyr::select(trt, age, grade, response) \%>\%
   tbl_summary(by = "trt") \%>\%
   add_p() \%>\%

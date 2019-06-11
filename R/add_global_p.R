@@ -46,7 +46,7 @@ add_global_p <- function(x, ...) {
 #' @family tbl_regression tools
 #' @examples
 #' tbl_lm_global_ex1 <-
-#'   lm(marker ~ age + grade, trial) %>%
+#'   lm(albumin ~ age + grade, gastric) %>%
 #'   tbl_regression() %>%
 #'   add_global_p()
 #' @export
@@ -135,7 +135,7 @@ add_global_p.tbl_regression <- function(x, terms = NULL, keep = FALSE, ...) {
 #' @family tbl_uvregression tools
 #' @examples
 #' tbl_uv_global_ex2 <-
-#'   trial %>%
+#'   gastric %>%
 #'   dplyr::select(response, trt, age, grade) %>%
 #'   tbl_uvregression(
 #'     method = glm,

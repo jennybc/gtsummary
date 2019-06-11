@@ -5,15 +5,15 @@ library(lme4)
 
 mod_lm <- lm(hp ~ am, data = mtcars)
 mod_survreg <- survreg(Surv(time, status) ~ age + ph.ecog, data = lung)
-mod_logistic <- glm(response ~ age + stage, trial, family = binomial)
+mod_logistic <- glm(response ~ age + stage, gastric, family = binomial)
 mod_poisson <- glm(count ~ age + trt,
-  trial %>% dplyr::mutate(count = sample.int(20, size = nrow(trial), replace = TRUE)),
+  gastric %>% dplyr::mutate(count = sample.int(20, size = nrow(gastric), replace = TRUE)),
   family = poisson
 )
 mod_lmer <- lmer(Reaction ~ Days + (Days | Subject), sleepstudy)
 mod_glmer <- glmer(am ~ hp + factor(cyl) + (1 | gear), mtcars, family = binomial)
 
-mod_lm_interaction <- lm(age ~ trt * grade * response, data = trial)
+mod_lm_interaction <- lm(age ~ trt * grade * response, data = gastric)
 
 lung2 = lung
 Hmisc::label(lung2$sex) <- "Gender"

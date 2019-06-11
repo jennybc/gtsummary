@@ -48,11 +48,11 @@
 #' @examples
 #' library(survival)
 #' tbl_regression_ex1 <-
-#'   coxph(Surv(ttdeath, death) ~ age + marker, trial) %>%
+#'   coxph(Surv(ttdeath, death) ~ age + albumin, gastric) %>%
 #'   tbl_regression(exponentiate = TRUE)
 #'
 #' tbl_regression_ex2 <-
-#'   glm(response ~ age + grade, trial, family = binomial(link = "logit")) %>%
+#'   glm(response ~ age + grade, gastric, family = binomial(link = "logit")) %>%
 #'   tbl_regression(exponentiate = TRUE)
 #'
 #' library(lme4)

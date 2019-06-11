@@ -25,7 +25,7 @@ Bold p-values in tables created by \code{\link{tbl_summary}}
 
 \examples{
 tbl_sum_bold_p_ex <-
-  trial \%>\%
+  gastric \%>\%
   dplyr::select(age, grade, response, trt) \%>\%
   tbl_summary(by = "trt") \%>\%
   add_p() \%>\%

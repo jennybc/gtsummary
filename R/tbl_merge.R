@@ -12,13 +12,13 @@
 #' @examples
 #' library(survival)
 #' t1 <-
-#'   glm(response ~ trt + grade + age, trial, family = binomial) %>%
+#'   glm(response ~ trt + grade + age, gastric, family = binomial) %>%
 #'   tbl_regression(
 #'     label = list(trt = "Treatment", grade = "Grade", age = "Age"),
 #'     exponentiate = TRUE
 #'   )
 #' t2 <-
-#'   coxph(Surv(ttdeath, death) ~ trt + grade + age, trial) %>%
+#'   coxph(Surv(ttdeath, death) ~ trt + grade + age, gastric) %>%
 #'   tbl_regression(
 #'     label = list(trt = "Treatment", grade = "Grade", age = "Age"),
 #'     exponentiate = TRUE
@@ -179,7 +179,7 @@ gt_tbl_merge <- quote(list(
     glue(),
 
   # Show "---" for reference groups
-  # e.g.fmt_missing(columns = vars(estimate_2, conf.low_2, conf.high_2), rows = (variable == 'trt' & row_type == 'level' & label == \'Drug\'), missing_text = '---') %>%
+  # e.g.fmt_missing(columns = vars(estimate_2, conf.low_2, conf.high_2), rows = (variable == 'trt' & row_type == 'level' & label == \'Radiation\'), missing_text = '---') %>%
   #     fmt_missing(columns = vars(estimate_2, conf.low_2, conf.high_2), rows = (variable == 'grade' & row_type == 'level' & label == \'I\'), missing_text = '---')
   fmt_missing_ref =
     imap(

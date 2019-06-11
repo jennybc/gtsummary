@@ -24,7 +24,7 @@ created by \code{\link{tbl_regression}}.
 
 \examples{
 tbl_lm_bold_p_ex <-
-  glm(response ~ trt + grade, trial, family = binomial(link = "logit")) \%>\%
+  glm(response ~ trt + grade, gastric, family = binomial(link = "logit")) \%>\%
   tbl_regression(exponentiate = TRUE) \%>\%
   tab_style_bold_p()
 }

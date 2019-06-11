@@ -34,8 +34,8 @@ The adjustments to the p-values is performed with
 
 \examples{
 tbl_uvr_q_ex <-
-  trial \%>\%
-  dplyr::select(age, marker, grade, response) \%>\%
+  gastric \%>\%
+  dplyr::select(age, albumin, grade, response) \%>\%
   tbl_uvregression(
     method = lm,
     y = age

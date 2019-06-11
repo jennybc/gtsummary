@@ -2,7 +2,7 @@ context("test-add_nevent")
 
 library(survival)
 fit_cox <- coxph(Surv(time, status) ~ sex, lung)
-fit_glm <- glm(response ~ trt, trial, family = binomial)
+fit_glm <- glm(response ~ trt, gastric, family = binomial)
 
 test_that("add_nevent after tbl_regression creates output without error/warning", {
   # cox model
@@ -40,7 +40,7 @@ test_that("add_nevent after tbl_uvregression creates output without error/warnin
   # cox model
   expect_error(
     tbl_uvregression(
-      trial,
+      gastric,
       method = coxph,
       y = Surv(ttdeath, death),
     ) %>%
@@ -49,7 +49,7 @@ test_that("add_nevent after tbl_uvregression creates output without error/warnin
   )
   expect_warning(
     tbl_uvregression(
-      trial,
+      gastric,
       method = coxph,
       y = Surv(ttdeath, death),
     ) %>%
@@ -60,7 +60,7 @@ test_that("add_nevent after tbl_uvregression creates output without error/warnin
   # glm model
   expect_error(
     tbl_uvregression(
-      trial,
+      gastric,
       method = glm,
       y = response,
       method.args = list(family = binomial)
@@ -70,7 +70,7 @@ test_that("add_nevent after tbl_uvregression creates output without error/warnin
   )
   expect_warning(
     tbl_uvregression(
-      trial,
+      gastric,
       method = glm,
       y = response,
       method.args = list(family = binomial)

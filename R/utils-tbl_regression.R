@@ -64,7 +64,7 @@ parse_fit <- function(fit, tidy, label, show_yesno) {
   # all terms in model ---------------------------------------------------------
   # this code looks over the model terms, and extracts a list of each term
   # for interaction terms, the terms are reported separately
-  # for example, trtDrug:age will result in trt:Drug and age.
+  # for example, trtRadiation:age will result in trt:Radiation and age.
   # counting number of colons in term names
   n_colon <- tidy$term %>% stringr::str_count(pattern = ":")
 

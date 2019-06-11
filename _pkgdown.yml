@@ -93,7 +93,7 @@ reference:
     desc: >
       Simulated data to illustrate package use
     contents:
-      - trial
+      - utuc
 
   - title: "S3 Generics"
     desc: >

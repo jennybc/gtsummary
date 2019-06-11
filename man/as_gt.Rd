@@ -30,7 +30,7 @@ for detailed examples in the 'Advanced Customization' section.
 
 \examples{
 as_gt_ex <-
-  trial \%>\%
+  gastric \%>\%
   tbl_summary(by = "trt") \%>\%
   as_gt()
 }
